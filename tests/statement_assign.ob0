@@ -1,0 +1,24 @@
+module statement_assign;
+
+const 
+One = 1;
+True = true;
+
+var
+bit : bool;
+number : integer;
+ResultInt : integer;
+ResultBool : bool;
+
+begin
+	//ResultInt := 1;
+	//ResultInt := -1;
+	//ResultInt := One;
+	//ResultInt := -One;
+	//ResultInt := number;
+
+	//ResultBool := true;
+	//ResultBool := false & true;
+	//ResultBool := bit or ResultBool;
+	ResultBool := (ResultBool) & (bit);
+end statement_assign.

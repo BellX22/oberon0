@@ -1,0 +1,23 @@
+module procedure_declaration;
+
+const
+One = 1;
+Two = 2;
+
+var
+Result : integer;
+
+procedure add_to_numbers (x : integer; y : integer; var result : integer);
+begin
+	result := x + y;
+end add_to_numbers;
+
+procedure Decrease (var result : integer);
+begin
+	result := result - 1;
+end Decrease;
+
+begin
+	add_to_numbers(One, Two, Result);
+	Decrease(Result);
+end procedure_declaration.

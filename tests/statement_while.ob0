@@ -1,0 +1,11 @@
+module statement_while;
+
+var
+i : integer;
+
+
+begin
+	while i > 0 do
+		i := i - 1
+	end;
+end statement_while.

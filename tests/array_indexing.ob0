@@ -1,0 +1,16 @@
+module array_indexing;
+
+var
+i : integer;
+j : integer;
+a : array (4) of integer;
+b : array 3 of array 5 of integer;
+
+begin
+	i := a[j];
+	i := a[2];
+	i := a[i+j];
+	i := b[i][j];
+	i := b[2][4];
+	i := a[a[i]];
+end array_indexing.

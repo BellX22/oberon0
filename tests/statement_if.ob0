@@ -1,0 +1,19 @@
+module statement_if;
+
+var
+i : integer;
+j : integer;
+
+
+begin
+	if i < j then
+		i := -1;
+	elsif i = j then
+		i := 0;
+	elsif i > j then
+		i := 1;
+	else
+		i := 2;
+	end;
+
+end statement_if.

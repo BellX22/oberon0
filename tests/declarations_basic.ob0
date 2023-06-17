@@ -1,0 +1,32 @@
+module declarations;
+
+const 
+One = 1;
+Two = 2;
+Three = 3;
+Four = 4;
+
+
+
+type 
+Player = record
+	posx, posy : integer;
+	life : integer;
+end;
+
+Enemy = record
+	posx, posy : integer;
+	life : integer;
+	gold : integer;
+end;
+
+
+
+var
+gGameIsRunning : bool;
+gCounter : integer;
+gGamefield : array (8*8) of integer;
+gPlayer1 : Player;
+gEnemy1 : Enemy;
+
+end declarations.

@@ -1,0 +1,4 @@
+module procedure_nested_declaration;
+
+begin
+end procedure_nested_declaration.

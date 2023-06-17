@@ -1,0 +1,26 @@
+module record_access;
+
+type
+R0 = record
+	x, y: integer
+end;
+R1 = record
+	u: integer;
+	v: array 4 of R0;
+	w: integer
+end;
+
+var
+i : integer;
+j : integer;
+k : integer;
+s : array 2 of R1;
+
+begin
+	k := s[i].u;
+	k := s[1].w;
+	k := s[i].v[j].x;
+	k := s[1].v[2].y;
+	s[0].v[i].y := k;
+end record_access.
+

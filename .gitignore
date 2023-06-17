@@ -50,3 +50,10 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Cmake files
+build/
+CMakeLists.txt.user
+
+# Visual Code fiels
+.vscode/

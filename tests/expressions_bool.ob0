@@ -1,0 +1,36 @@
+module bool_expressions;
+
+const 
+One = 1;
+Two = 2;
+Three = 3;
+Four = 4;
+
+var
+Result : bool;
+a : integer;
+b : integer;
+c : integer;
+d : integer;
+e : integer;
+f : integer;
+g : integer;
+h : integer;
+
+begin
+	//Result := Two > One;
+	//Result := Two < One;
+	//Result := Two >= One;
+	//Result := Two <= One;
+	//Result := ~(Two = Two);
+	//Result := One # Two;
+	//Result := (Two > One) & (Four > Three);
+	//Result := (Two > One) & (Four > Three);
+	//Result := (Two < One) or (Four > Three);
+	//Result := ((a < b) & (c < d)) or ((e < f) & (g < h));
+	if ((a < b) or (c < d)) & ((e < f) or (g < h)) then
+		Result := true;
+	else
+		Result := false;
+	end;
+end bool_expressions.
