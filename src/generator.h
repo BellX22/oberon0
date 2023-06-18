@@ -51,7 +51,7 @@ struct Item
         } parameter;
 
         struct {
-
+            int function_number;
         } builtin_procedure_call;
 
         int reg;

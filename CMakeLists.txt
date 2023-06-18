@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 1.0)
+cmake_minimum_required(VERSION 3.0)
 project(Oberon0 LANGUAGES C)
 
 add_executable(oberon0c

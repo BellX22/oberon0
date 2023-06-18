@@ -509,6 +509,7 @@ generator_make_item(Object* obj)
         else
             scanner_mark_error("level!");
     } else {
+        //disallow builtin procedure calls for now...
         assert(false);
     }
     return item;

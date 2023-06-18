@@ -141,45 +141,44 @@ parse_selector(Item x)
     return x;
 }
 
-#if 0
-static void
-parse_builtin_function()
+static Item
+parse_builtin_function(Item x, int function_number)
 {
-    if(g_symbol == TK_LEFT_PAREN)
-    {
-        g_symbol = scanner_get();
-        parse_expression();
-        if(fctno == 2)
-            ;
-        else if(fctno == 3)
-        {
-            generator_odd(x);
-        }
-        else if(fctno == 4)
-        {
-            if(g_symbol == TK_COMMA)
-            {
-                g_symbol = scanner_get();
-                parse_expression(y);
-                generator_bit(x, y);
-            }
-            else
-            {
-                scanner_mark_error("command expected");
-            }
-        }
-        if(g_symbol == TK_RIGHT_PAREN)
-            g_symbol = scanner_get();
-        else
-            scanner_mark_error("rparen expected");
-    }
-    else
-    {
+    if(g_symbol != TK_LEFT_PAREN) {
         scanner_mark_error("param missing");
-        generator_make_const_item(x, TF_INT, 0);
+        x = generator_make_const_item(TF_INT, 0);
+        return x;
     }
+
+    sym_assert_then_next(TK_LEFT_PAREN, "(?");
+    x = parse_expression();
+    Item y = {0};
+    if(g_symbol == TK_COMMA) {
+        next();
+        y = parse_expression();
+    } else {
+        scanner_mark_error("command expected");
+    }
+
+    if(function_number == 0) {
+        //x = generator_emit_get(x, y);
+    } else if(function_number == 1) {
+        //x = generator_emit_put(x, y);
+    } else if(function_number == 2) {
+        //x = generator_emit_ord(x);
+    } else if(function_number == 3) {
+        //x = generator_odd(x);
+    } else if(function_number == 4) {
+        //x = generator_bit(x, y);
+    }
+
+    if(g_symbol == TK_RIGHT_PAREN)
+        next();
+    else
+        scanner_mark_error("rparen expected");
+
+    return x;
 }
-#endif
 
 static Item
 parse_factor()
@@ -196,8 +195,8 @@ parse_factor()
         obj = find_object(scanner_get_identifier());
         next();
         if(obj->klass == OC_BUILTIN_PROCEDURE) {
-            //parse_builtin_function(x, obj->value);
-            //x.type = obj->type;
+            item = parse_builtin_function(item, obj->builtin_procedure.function_number);
+            item.type = obj->type;
         } else {
             item = generator_make_item(obj);
             item = parse_selector(item);
@@ -403,9 +402,6 @@ parse_statement_identifier(void)
                     Item param_ex = parse_expression();
                     if(param->is_param) {
                         if(param_ex.type == param->type) {
-                            // TODO@Andreas: return value not used...?
-                            // load the params into registers
-                            // or push to the stack? for passing to procedure
                             generator_parameter(param_ex, param->klass);
                         } else {
                             scanner_mark_error("bad param type");
@@ -438,31 +434,8 @@ parse_statement_identifier(void)
         }
     }
     else if(x.mode == IM_BUILTIN_PROCEDURE_CALL) {
-        assert(false);
-        int n = x.a;
-        if(g_symbol == TK_LEFT_PAREN) {
-            next();
-            Item x = parse_expression();
-            if(g_symbol == TK_COMMA) {
-                next();
-                Item y = parse_expression();
-                if(n == 0) {
-                    //generator_get(x, y);
-                } else if(n == 1) {
-                    //generator_put(x, y);
-                } else {
-                    scanner_mark_error("comma expected");
-                }
-            }
-            if(g_symbol == TK_RIGHT_PAREN) {
-                next();
-            } else {
-                scanner_mark_error("rparen expected");
-            }
-        }
-        else {
-            scanner_mark_error("rparen expected");
-        }
+        // only get and put should be called here...
+        parse_builtin_function(x, x.builtin_procedure_call.function_number);
     }
     else if(obj->klass == OC_TYPE) {
         scanner_mark_error("illegal assignment");
@@ -760,8 +733,11 @@ parse_module()
         scanner_mark_error("module?");
         return;
     }
+    // insert here all module/global scope names
     open_scope(); // module scope
     g_module_scope = g_current_scope;
+
+    ///////////////////////////////////////////////////
     create_object(OC_TYPE, "integer")->type = &IntType;
     create_object(OC_TYPE, "bool")->type = &BoolType;
     obj = create_object(OC_CONST, "true");
@@ -770,6 +746,28 @@ parse_module()
     obj = create_object(OC_CONST, "false");
     obj->type = &BoolType;
     obj->konst.value = 0;
+
+    obj = create_object(OC_BUILTIN_PROCEDURE, "get");
+    obj->type = NULL;
+    obj->builtin_procedure.function_number = 0;
+
+    obj = create_object(OC_BUILTIN_PROCEDURE, "put");
+    obj->type = NULL;
+    obj->builtin_procedure.function_number = 1;
+
+    obj = create_object(OC_BUILTIN_PROCEDURE, "ord");
+    obj->type = NULL;
+    obj->builtin_procedure.function_number = 2;
+
+    obj = create_object(OC_BUILTIN_PROCEDURE, "odd");
+    obj->type = NULL;
+    obj->builtin_procedure.function_number = 3;
+
+    obj = create_object(OC_BUILTIN_PROCEDURE, "bit");
+    obj->type = NULL;
+    obj->builtin_procedure.function_number = 4;
+    ///////////////////////////////////////////////////
+
     next();
     if (g_symbol == TK_IDENTIFIER) {
         string_copy(module_name, scanner_get_identifier());

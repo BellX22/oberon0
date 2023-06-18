@@ -44,6 +44,9 @@ struct Object
         struct { // OC_PROCEDURE
             int entry_point_offset; // -1 if not known
         } procedure;
+        struct { // OC_BUILTIN_PROCEDURE
+            int function_number; // index into table
+        } builtin_procedure;
         struct { // OC_PARAMETER
             int address_offset;
         } parameter;
