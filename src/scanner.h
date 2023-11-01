@@ -14,8 +14,7 @@ typedef enum TokenKind TokenKind;
  * with beginning and ending almost-blank lines.
  */
 
-enum TokenKind
-{
+enum TokenKind {
     TK_UNKNOWN,       // null
     TK_TIMES,         // times     '*'
     TK_DIV,           // div       'div'
@@ -67,11 +66,11 @@ enum TokenKind
 // comment start '(*'
 // commment end  '*)'
 
-extern void        scanner_init(const char* source);
-extern TokenKind   scanner_get(void);
-extern int         scanner_get_number(void);
-extern const char* scanner_get_identifier(void);
-extern void        scanner_mark_error(const char* fmt, ...);
-extern bool        scanner_has_error(void);
+void        scanner_init(const char* source);
+TokenKind   scanner_get(void);
+int         scanner_get_number(void);
+const char* scanner_get_identifier(void);
+void        scanner_mark_error(const char* fmt, ...);
+bool        scanner_has_error(void);
 
 #endif // LEXER_H

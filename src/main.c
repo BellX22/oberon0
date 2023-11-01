@@ -7,18 +7,22 @@ char*
 file_read_text(const char* filename)
 {
     FILE* file = fopen(filename, "rb");
-    if(!file){
+
+    if(!file) {
         printf("Error: Could not open file %s.\n", filename);
         exit(EXIT_FAILURE);
     }
+
     fseek(file, 0, SEEK_END);
     long length = ftell(file);
     fseek(file, 0, SEEK_SET);
     char* buffer = malloc(length + 1);
+
     if(!buffer) {
         printf("Error: Could not allocate buffer for file %s.\n", filename);
         exit(EXIT_FAILURE);
     }
+
     fread(buffer, 1, length, file);
     buffer[length] = 0;
     fclose(file);
@@ -40,9 +44,10 @@ compile(const char* path)
 }
 
 extern void print_file(void);
-int main(int argc, char** argv)
+int
+main(int argc, char** argv)
 {
-    compile("../tests/declaration_procedure.ob0");
+    compile("../tests/01sample.ob0");
     print_file();
     printf("Done compiling\n");
 

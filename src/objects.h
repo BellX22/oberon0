@@ -8,8 +8,7 @@ typedef struct Object Object;
 typedef struct Type Type;
 #endif
 
-enum ObjectClass
-{
+enum ObjectClass {
     OC_HEAD,
     OC_TYPE,      // Type
     OC_RECORD,    // Record
@@ -23,8 +22,7 @@ enum ObjectClass
     OC_COUNT
 };
 
-struct Object
-{
+struct Object {
     ObjectClass klass;
     Object      *next;
     Object      *parent;
@@ -38,7 +36,7 @@ struct Object
         struct { // OC_CONST for bool and integer
             int value;
         } konst;
-        struct { // OC_VAR, OC_PARAMETER(reference)
+        struct { // OC_VAR
             int address_offset;
         } var;
         struct { // OC_PROCEDURE
@@ -56,8 +54,8 @@ struct Object
     }/*as*/;
 };
 
-extern Object *object_insert(Object **list);
-extern Object *object_append(Object **list);
-extern Object *object_find(Object **list, const char *name);
+Object *object_insert(Object **list);
+Object *object_append(Object **list);
+Object *object_find(Object **list, const char *name);
 
 #endif

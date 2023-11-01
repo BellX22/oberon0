@@ -5,11 +5,12 @@ int
 string_length(const char* s)
 {
     int n = 0;
-    while(*s)
-    {
+
+    while(*s) {
         n += 1;
         s += 1;
     }
+
     return n;
 }
 
@@ -22,8 +23,7 @@ string_equal(const char* a, const char* b)
     if(alen != blen)
         return false;
 
-    for(int i = 0; i < alen; i++)
-    {
+    for(int i = 0; i < alen; i++) {
         if(a[i] != b[i])
             return false;
     }
@@ -36,10 +36,11 @@ string_copy(char* dest, const char* src)
 {
     int len = string_length(src);
     int i = 0;
-    for(i = 0; i < len; i++)
-    {
+
+    for(i = 0; i < len; i++) {
         dest[i] = src[i];
     }
+
     dest[i] = '\0';
 }
 
@@ -54,8 +55,8 @@ to_number(const char* s)
     }
 
     Int n = 0;
-    while(*s)
-    {
+
+    while(*s) {
         n *= 10;
         n += (*s) - '0';
         s += 1;
@@ -69,6 +70,7 @@ is_digit(char c)
 {
     if ((c >= '0' && c <= '9'))
         return true;
+
     return false;
 }
 
@@ -78,10 +80,19 @@ is_xdigit(char c)
     if (is_digit(c))
         return true;
 
-    switch(c)
-    {
-    case 'a': case 'b': case 'c': case 'd': case 'e': case 'f':
-    case 'A': case 'B': case 'C': case 'D': case 'E': case 'F':
+    switch(c) {
+    case 'a':
+    case 'b':
+    case 'c':
+    case 'd':
+    case 'e':
+    case 'f':
+    case 'A':
+    case 'B':
+    case 'C':
+    case 'D':
+    case 'E':
+    case 'F':
         return true;
     }
 
@@ -93,8 +104,8 @@ is_ident_start(char c)
 {
     return
         (c >= 'A' && c <= 'Z')
-           || (c >= 'a' && c <= 'z')
-           || (c == '_')
+        || (c >= 'a' && c <= 'z')
+        || (c == '_')
         ;
 }
 
@@ -103,9 +114,9 @@ is_ident(char c)
 {
     return
         (c >= 'A' && c <= 'Z')
-           || (c >= 'a' && c <= 'z')
-           || (c == '_')
-           || is_digit(c)
+        || (c >= 'a' && c <= 'z')
+        || (c == '_')
+        || is_digit(c)
         ;
 }
 
@@ -113,11 +124,11 @@ int
 get_xdigit_value(int char_digit_literal)
 {
     int c = char_digit_literal;
+
     if(c >= '0' && c <= '9')
         return c - '0';
 
-    switch(c)
-    {
+    switch(c) {
     case 'a':
     case 'b':
     case 'c':
@@ -125,6 +136,7 @@ get_xdigit_value(int char_digit_literal)
     case 'e':
     case 'f':
         return c - 'a' + 10;
+
     case 'A':
     case 'B':
     case 'C':

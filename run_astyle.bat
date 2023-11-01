@@ -1,0 +1,1 @@
+astyle.exe -v --formatted --options=astyle-options.ini --recursive src/*.c,*.h

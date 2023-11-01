@@ -4,7 +4,7 @@ A C Implementation of Niklaus Wirth's Oberon-0 Language from the book
 But it would be easy to implement a generator for x64-assembly.
 
 # Grammar
-```cpp
+```
 Identifier = letter { letter | digit }
 Integer = digit { digit }
 Number = Integer
@@ -49,3 +49,9 @@ Declarations      = [ "const" { Identifier "=" Expression ";" ]
                     { ProcedureDeclaration ";" }
 Module = "module" Identifier ";" Declarations
 ```
+
+# TODO
+- Standard procedures (procedures like get/put and functions like odd even...)
+- Nested procedures parsing
+- Some parameters need to be handled correctly, like passing a record field as 'var' parameter into a procedure
+- get all code examples from the book and write them as testcases

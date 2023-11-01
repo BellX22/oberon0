@@ -10,8 +10,7 @@ typedef enum ItemMode ItemMode;
 #endif
 
 // must be in sync with ObjectClass
-enum ItemMode
-{
+enum ItemMode {
     IM_CONST = OC_CONST,
     IM_VAR = OC_VAR,
     IM_PROCEDURE_CALL = OC_PROCEDURE,
@@ -22,13 +21,12 @@ enum ItemMode
     IM_CONDITION
 };
 
-struct Item
-{
+struct Item {
     ItemMode mode;
     Type*    type;
     int      level;
 
-    int a, r;
+    //int a, r; // all beneath could be reduced to this
 
     union  {
         struct {
@@ -70,37 +68,30 @@ struct Item
 };
 
 // Size of a pointer on the system
-extern int generator_get_word_size();
-extern int generator_get_program_counter();
-extern int generator_get_current_level();
-
-extern void generator_open();
-extern void generator_header(int size);
-extern void generator_close();
-
-// generate machine code for procedures
-extern void generator_enter(int parblksize, int locblksize);  // procedure entry
-extern void generator_return(int size);                       // procedure exit
-extern void generator_increase_level(int delta);
-extern Item generator_parameter(Item x, ObjectClass klass);   // push params of procedure call
-extern void generator_call(Item x);                           // call procedure
-
-extern void generator_store(Item x, Item y);                  // x := y;
-extern Item generator_array_index(Item array, Item index);    // x := x[y]
-extern Item generator_field(Item record, Object* field);      // x := x.y
-extern Item generator_op1(int op_token_kind, Item x);         // x := op x
-extern Item generator_op2(int op_token_kind, Item x, Item y); // x := x op y
-extern Item generator_relation(int op, Item x, Item y);       // x := x ? y
-
-extern Item generator_cf_jump(Item x);                        // conditional forward jump
-extern int  generator_f_jump(int relative_location);          // unconditional forward jump
-extern Item generator_cb_jump(Item x, int location);          // conditional backward jump
-extern void generator_b_jump(int location);                   // unconditional backward jump
-extern void generator_fix_links(int location);
-
-extern Item generator_make_item(Object* obj);
-extern Item generator_make_const_item(TypeForm form, int value);
-
-extern void generator_check_registers();
+int generator_get_word_size();
+int generator_get_program_counter();
+int generator_get_current_level();
+void generator_open();
+void generator_header(int size);
+void generator_close();
+void generator_enter(int parblksize, int locblksize);  // procedure entry
+void generator_return(int size);                       // procedure exit
+void generator_increase_level(int delta);
+Item generator_parameter(Item x, ObjectClass klass);   // push params of procedure call
+void generator_call(Item x);                           // call procedure
+void generator_store(Item x, Item y);                  // x := y;
+Item generator_array_index(Item array, Item index);    // x := x[y]
+Item generator_field(Item record, Object* field);      // x := x.y
+Item generator_op1(int op_token_kind, Item x);         // x := op x
+Item generator_op2(int op_token_kind, Item x, Item y); // x := x op y
+Item generator_relation(int op, Item x, Item y);       // x := x ? y
+Item generator_cf_jump(Item x);               // conditional forward jump
+int  generator_f_jump(int relative_location); // unconditional forward jump
+Item generator_cb_jump(Item x, int location); // conditional backward jump
+void generator_b_jump(int location);          // unconditional backward jump
+void generator_fix_links(int location);
+Item generator_make_item(Object* obj);
+Item generator_make_const_item(TypeForm form, int value);
+void generator_check_registers();
 
 #endif

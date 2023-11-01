@@ -6,8 +6,7 @@ typedef struct Type Type;
 typedef struct Object Object;
 #endif
 
-enum TypeForm
-{
+enum TypeForm {
     TF_BOOL,
     TF_INT,
     TF_ARRAY,
@@ -15,13 +14,11 @@ enum TypeForm
     TF_COUNT,
 };
 
-struct Type
-{
+struct Type {
     TypeForm form;
     int      size;
 
-    union 
-    {
+    union {
         struct {
             Object* fields;
         } record;
