@@ -8,30 +8,30 @@ typedef enum ConditionCode ConditionCode;
 #endif
 
 enum Operation {
-    OP_MOV,
-    OP_NOT, // Bitwise
-    OP_AND, // Bitwise
-    OP_OR,  // Bitwise
-    OP_XOR, // Bitwise
-    OP_LSH, // Bitwise
-    OP_RSH, // Bitwise
-    OP_ADD,
-    OP_SUB,
-    OP_MUL,
-    OP_DIV,
-    OP_MOD,
-    OP_CMP,
+	OP_MOV,
+	OP_NOT, // Bitwise
+	OP_AND, // Bitwise
+	OP_OR,  // Bitwise
+	OP_XOR, // Bitwise
+	OP_LSH, // Bitwise
+	OP_RSH, // Bitwise
+	OP_ADD,
+	OP_SUB,
+	OP_MUL,
+	OP_DIV,
+	OP_MOD,
+	OP_CMP,
 };
 
 enum ConditionCode {
-    CC_TRUE,
-    CC_FALSE,
-    CC_EQUAL,
-    CC_NOT_EQUAL,
-    CC_LESS,
-    CC_LESS_EQUAL,
-    CC_GREATER,
-    CC_GREATER_EQUAL,
+	CC_TRUE,
+	CC_FALSE,
+	CC_EQUAL,
+	CC_NOT_EQUAL,
+	CC_LESS,
+	CC_LESS_EQUAL,
+	CC_GREATER,
+	CC_GREATER_EQUAL,
 };
 // -----------------------------------------------------------------------------
 // Convenience API
@@ -45,7 +45,7 @@ void am_emit_operation_im(Operation op, reg_index a, reg_index b, int value);
 void am_emit_c_jump_im(ConditionCode cc, int relative);
 void am_emit_c_jump(ConditionCode cc, reg_index reg);
 // -----------------------------------------------------------------------------
-void am_emit_label(const char* name); // just for notes
+void am_emit_label(const char *name); // just for notes
 // -----------------------------------------------------------------------------
 // Specific API
 // -----------------------------------------------------------------------------

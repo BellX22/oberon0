@@ -3,27 +3,27 @@ module sample;
 procedure multiply;
 	var x, y, z : integer;
 begin
-	read(x);
-	read(y);
+	//read(x);
+	//read(y);
 	z := 0;
 	while x > 0 do
 		if x mod 2 = 1 then
-			z : z + y;
+			z := z + y;
 		end;
 		y := 2 * y;
-		x : x div 2;
+		x := x div 2;
 	end;
-	write(x);
-	write(y);
-	write(z);
-	writeln;
+	//write(x);
+	//write(y);
+	//write(z);
+	//writeln;
 end multiply;
 
 procedure divide;
 	var x, y, r, q, w : integer;
 begin
-	read(x);
-	read(y);
+	//read(x);
+	//read(y);
 	r := x;
 	q := 0;
 	w := y;
@@ -38,21 +38,21 @@ begin
 			q := q + 1;
 		end;
 	end;
-	write(x);
-	write(y);
-	write(q);
-	write(r);
-	writeln;
+	//write(x);
+	//write(y);
+	//write(q);
+	//write(r);
+	//writeln;
 end divide;
 
 procedure binsearch;
-	var i, j, k, n : integer;
+	var i, j, k, n, x : integer;
 	a: array 32 of integer;
 begin
-	read(n);
+	//read(n);
 	k := 0;
 	while k < n do
-		read(a[k]);
+		//read(a[k]);
 		k := k + 1;
 	end;
 	i := 0;
@@ -65,10 +65,10 @@ begin
 			i := k + 1
 		end
 	end;
-	write(i);
-	write(j);
-	write(a[j]);
-	writeln;
+	//write(i);
+	//write(j);
+	//write(a[j]);
+	//writeln;
 end binsearch;
 
 end sample.

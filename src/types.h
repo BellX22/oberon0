@@ -7,27 +7,27 @@ typedef struct Object Object;
 #endif
 
 enum TypeForm {
-    TF_BOOL,
-    TF_INT,
-    TF_ARRAY,
-    TF_RECORD,
-    TF_COUNT,
+	TF_BOOL,
+	TF_INT,
+	TF_ARRAY,
+	TF_RECORD,
+	TF_COUNT,
 };
 
 struct Type {
-    TypeForm form;
-    int      size;
+	TypeForm form;
+	int      size;
 
-    union {
-        struct {
-            Object* fields;
-        } record;
+	union {
+		struct {
+			Object *fields;
+		} record;
 
-        struct {
-            int   len;
-            Type* base;
-        } array;
-    };
+		struct {
+			int   len;
+			Type *base;
+		} array;
+	};
 };
 
 extern Type BoolType;

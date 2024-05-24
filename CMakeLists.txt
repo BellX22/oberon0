@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(Oberon0 LANGUAGES C)
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD_REQUIRED ON)
 
 add_executable(oberon0c
 src/main.c
