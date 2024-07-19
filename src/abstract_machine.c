@@ -85,46 +85,57 @@ void am_emit_mov(reg_index dest, reg_index src)
 {
 	PRINT("%s := %s\n", Name[dest], Name[src]);
 }
+
 void am_emit_cmp(reg_index reg1, reg_index reg2)
 {
 	PRINT("cmp %s, %s\n", Name[reg1], Name[reg2]);
 }
+
 void am_emit_and(reg_index dest, reg_index lhs, reg_index rhs)
 {
 	PRINT("%s := %s and %s\n", Name[dest], Name[lhs], Name[rhs]);
 }
+
 void am_emit_or (reg_index dest, reg_index lhs, reg_index rhs)
 {
 	PRINT("%s := %s or %s\n", Name[dest], Name[lhs], Name[rhs]);
 }
+
 void am_emit_xor(reg_index dest, reg_index lhs, reg_index rhs)
 {
 	PRINT("%s := %s xor %s\n", Name[dest], Name[lhs], Name[rhs]);
 }
+
 void am_emit_add(reg_index dest, reg_index lhs, reg_index rhs)
 {
 	PRINT("%s := %s + %s\n", Name[dest], Name[lhs], Name[rhs]);
 }
+
 void am_emit_sub(reg_index dest, reg_index lhs, reg_index rhs)
 {
 	PRINT("%s := %s - %s\n", Name[dest], Name[lhs], Name[rhs]);
 }
+
 void am_emit_mul(reg_index dest, reg_index lhs, reg_index rhs)
 {
 	PRINT("%s := %s * %s\n", Name[dest], Name[lhs], Name[rhs]);
 }
+
 void am_emit_div(reg_index dest, reg_index lhs, reg_index rhs)
 {
 	PRINT("%s := %s / %s\n", Name[dest], Name[lhs], Name[rhs]);
 }
+
 void am_emit_lsh(reg_index dest, reg_index lhs, reg_index rhs)
 {
 	PRINT("%s := %s << %s\n", Name[dest], Name[lhs], Name[rhs]);
 }
+
 void am_emit_rsh(reg_index dest, reg_index lhs, reg_index rhs)
 {
 	PRINT("%s := %s >> %s\n", Name[dest], Name[lhs], Name[rhs]);
 }
+
 void am_emit_mod(reg_index dest, reg_index lhs, reg_index rhs)
 {
 	PRINT("%s := %s %% %s\n", Name[dest], Name[lhs], Name[rhs]);
@@ -134,46 +145,57 @@ void am_emit_mov_im(reg_index dest, int value)
 {
 	PRINT("%s := %d\n",        Name[dest], value);
 }
+
 void am_emit_cmp_im(reg_index reg, int value)
 {
 	PRINT("cmp %s, %d\n",      Name[reg], value);
 }
+
 void am_emit_and_im(reg_index dest, reg_index lhs, int rhs_value)
 {
 	PRINT("%s := %s and %d\n", Name[dest], Name[lhs], rhs_value);
 }
+
 void am_emit_or_im (reg_index dest, reg_index lhs, int rhs_value)
 {
 	PRINT("%s := %s or %d\n",  Name[dest], Name[lhs], rhs_value);
 }
+
 void am_emit_xor_im(reg_index dest, reg_index lhs, int rhs_value)
 {
 	PRINT("%s := %s xor %d\n", Name[dest], Name[lhs], rhs_value);
 }
+
 void am_emit_add_im(reg_index dest, reg_index lhs, int rhs_value)
 {
 	PRINT("%s := %s + %d\n",   Name[dest], Name[lhs], rhs_value);
 }
+
 void am_emit_sub_im(reg_index dest, reg_index lhs, int rhs_value)
 {
 	PRINT("%s := %s - %d\n",   Name[dest], Name[lhs], rhs_value);
 }
+
 void am_emit_mul_im(reg_index dest, reg_index lhs, int rhs_value)
 {
 	PRINT("%s := %s * %d\n",   Name[dest], Name[lhs], rhs_value);
 }
+
 void am_emit_div_im(reg_index dest, reg_index lhs, int rhs_value)
 {
 	PRINT("%s := %s / %d\n",   Name[dest], Name[lhs], rhs_value);
 }
+
 void am_emit_lsh_im(reg_index dest, reg_index lhs, int rhs_value)
 {
 	PRINT("%s := %s << %d\n",  Name[dest], Name[lhs], rhs_value);
 }
+
 void am_emit_rsh_im(reg_index dest, reg_index lhs, int rhs_value)
 {
 	PRINT("%s := %s >> %d\n",  Name[dest], Name[lhs], rhs_value);
 }
+
 void am_emit_mod_im(reg_index dest, reg_index lhs, int rhs_value)
 {
 	PRINT("%s := %s %% %d\n",  Name[dest], Name[lhs], rhs_value);
@@ -183,6 +205,7 @@ void am_emit_load(reg_index dest, reg_index base_reg, int offset)
 {
 	PRINT("%s := mem[%s + %d]\n", Name[dest], Name[base_reg], offset);
 }
+
 void am_emit_store(reg_index src, reg_index base_reg, int offset)
 {
 	PRINT("mem[%s + %d] := %s\n", Name[base_reg], offset, Name[src]);
@@ -192,54 +215,67 @@ void am_emit_jump_im(int relative)
 {
 	PRINT("jmp %3d\n", relative);
 }
+
 void am_emit_jump_equal_im(int relative)
 {
 	PRINT("je  %3d\n", relative);
 }
+
 void am_emit_jump_not_equal_im(int relative)
 {
 	PRINT("jne %3d\n", relative);
 }
+
 void am_emit_jump_less_im(int relative)
 {
 	PRINT("jl  %3d\n", relative);
 }
+
 void am_emit_jump_less_equal_im(int relative)
 {
 	PRINT("jle %3d\n", relative);
 }
+
 void am_emit_jump_greater_im(int relative)
 {
 	PRINT("jg  %3d\n", relative);
 }
+
 void am_emit_jump_greater_euqal_im(int relative)
 {
 	PRINT("jge %3d\n", relative);
 }
+
 void am_emit_jump(reg_index reg)
 {
 	PRINT("jmp %s\n", Name[reg]);
 }
+
 void am_emit_jump_equal(reg_index reg)
 {
 	PRINT("je  %s\n", Name[reg]);
 }
+
 void am_emit_jump_not_equal(reg_index reg)
 {
 	PRINT("jne %s\n", Name[reg]);
 }
+
 void am_emit_jump_less(reg_index reg)
 {
 	PRINT("jl  %s\n", Name[reg]);
 }
+
 void am_emit_jump_less_equal(reg_index reg)
 {
 	PRINT("jle %s\n", Name[reg]);
 }
+
 void am_emit_jump_greater(reg_index reg)
 {
 	PRINT("jg  %s\n", Name[reg]);
 }
+
 void am_emit_jump_greater_euqal(reg_index reg)
 {
 	PRINT("jge %s\n", Name[reg]);
@@ -461,5 +497,4 @@ void am_emit_c_jump(ConditionCode cc, reg_index reg)
 		assert(false);
 		break;
 	}
-
 }

@@ -38,7 +38,7 @@ enum ConditionCode {
 // -----------------------------------------------------------------------------
 ConditionCode negate_condition(ConditionCode cc);
 int  am_get_pc(void);
-int  am_get_jump_location(int loc);
+int  am_get_jump_location(int absolute_loc);
 void am_fix_jump(int at, int with);
 void am_emit_operation(Operation op, reg_index a, reg_index b, reg_index c);
 void am_emit_operation_im(Operation op, reg_index a, reg_index b, int value);
